@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "registryName": {
-            "value": "maudhelen-cr"
+            "value": "maudhelencr"
         },
         "location": {
             "value": "Poland Central"

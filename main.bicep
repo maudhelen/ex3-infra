@@ -7,7 +7,6 @@ param appServicePlanName string = 'serverfarm'
 param siteName string = 'webapp'
 param registryUsername string = 'maudhelen'
 param registryPassword string = 'maud1234'
-param resourceGroupName string = 'aguadamillas_students_1'
 
 module registryModule './modules/container-registry/registry/main.bicep' = {
   name: 'registryModule'
