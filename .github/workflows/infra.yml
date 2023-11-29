@@ -17,14 +17,8 @@ jobs:
 
       # Lint Bicep code 
     - name: Run Bicep linter
-      run: az bicep build --file ./main.bicep 2> stderr.txt || true
+      run: az bicep build --file ./main.bicep
     
-    - name: Print stderr
-      run: |
-        if [ -f stderr.txt ]; then
-          cat stderr.txt
-        fi
-
   deploy:
 #   if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
