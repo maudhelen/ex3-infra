@@ -8,7 +8,7 @@ param siteName string = 'webapp'
 param registryUsername string = 'maudhelen'
 param registryPassword string = 'maud1234'
 
-module registryModule './modules/container-registry/registry/main.bicep' = {
+module registryModule './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
   name: 'registryModule'
   params: {
     // Required parameters
@@ -19,7 +19,7 @@ module registryModule './modules/container-registry/registry/main.bicep' = {
   }
 }
 
-module serverfarmModule './modules/web/serverfarm/main.bicep' = {
+module serverfarmModule './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
   name: 'serverfarmModule'
   params: {
     name: appServicePlanName
@@ -35,7 +35,7 @@ module serverfarmModule './modules/web/serverfarm/main.bicep' = {
   }
 }
 
-module siteModule './modules/web/site/main.bicep' = {
+module siteModule './ResourceModules-main/modules/web/site/main.bicep' = {
   name: 'siteModule'
   params: {
     kind: 'app'
