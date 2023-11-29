@@ -12,10 +12,10 @@
             "value": true
         },
         "appServicePlanName": {
-            "value": "maudhelen-webapp"
+            "value": "maudhelenwebapp"
         },
         "siteName": {
-            "value": "maudhelen-site"
+            "value": "maudhelensite"
         }
     }
 }
