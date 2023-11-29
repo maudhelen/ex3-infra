@@ -1,4 +1,4 @@
-metadata description = 'This bicep file deploys a container registry, app service plan, and web app.'
+// main.bicep
 
 param registryName string = 'containerregistry'
 param location string = 'East US'
@@ -7,9 +7,10 @@ param appServicePlanName string = 'serverfarm'
 param siteName string = 'webapp'
 param registryUsername string = 'maudhelen'
 param registryPassword string = 'maud1234'
+param resourceGroupName string = 'aguadamillas_students_1'
 
-module registry './modules/container-registry/registry/main.bicep' = {
-  name: 'containerregistry'
+module registryModule './modules/container-registry/registry/main.bicep' = {
+  name: 'registryModule'
   params: {
     // Required parameters
     name: registryName
@@ -19,8 +20,8 @@ module registry './modules/container-registry/registry/main.bicep' = {
   }
 }
 
-module serverfarm './modules/web/serverfarm/main.bicep' = {
-  name: 'serverfarm'
+module serverfarmModule './modules/web/serverfarm/main.bicep' = {
+  name: 'serverfarmModule'
   params: {
     name: appServicePlanName
     location: location
@@ -35,8 +36,8 @@ module serverfarm './modules/web/serverfarm/main.bicep' = {
   }
 }
 
-module site './modules/web/site/main.bicep' = {
-  name: 'site'
+module siteModule './modules/web/site/main.bicep' = {
+  name: 'siteModule'
   params: {
     kind: 'app'
     name: siteName
@@ -51,7 +52,6 @@ module site './modules/web/site/main.bicep' = {
       DOCKER_REGISTRY_SERVER_URL: 'https://${registryName}.azurecr.io'
       DOCKER_REGISTRY_SERVER_USERNAME: registryUsername
       DOCKER_REGISTRY_SERVER_PASSWORD: registryPassword
-      }
+    }
   }
 }
-
