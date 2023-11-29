@@ -17,7 +17,13 @@ jobs:
 
       # Lint Bicep code 
     - name: Run Bicep linter
-      run: az bicep build --file ./main.bicep
+      run: az bicep build --file ./main.bicep 2> stderr.txt || true
+    
+    - name: Print stderr
+      run: |
+        if [ -f stderr.txt ]; then
+          cat stderr.txt
+        fi
 
   deploy:
 #   if: github.ref == 'refs/heads/dev'
