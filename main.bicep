@@ -4,7 +4,7 @@ param location string = 'East US'
 param registryName string = 'myRegistry'
 param registryAcrAdminUserEnabled bool = true
 
-module registryModule './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
+module registry './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
   name: 'registryModule'
   params: {
     name: registryName
@@ -16,7 +16,7 @@ module registryModule './ResourceModules-main/modules/container-registry/registr
 // Serverfarm Module
 param appServicePlanName string = 'serverfarm'
 
-module serverfarmModule './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
+module serverfarm './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
   name: 'serverfarmModule'
   params: {
     name: appServicePlanName
@@ -34,15 +34,14 @@ module serverfarmModule './ResourceModules-main/modules/web/serverfarm/main.bice
 }
 
 // Site Module
-param containerRegistryName string
-param containerRegistryImageName string
-param containerRegistryImageVersion string
+param registryImageName string
+param registryImageVersion string
 
 param siteName string = 'webapp'
 param registryUsername string = 'maudhelen'
 param registryPassword string = 'maud1234'
 
-module siteModule './ResourceModules-main/modules/web/site/main.bicep' = {
+module site './ResourceModules-main/modules/web/site/main.bicep' = {
   name: 'siteModule'
   params: {
     kind: 'app'
@@ -50,12 +49,12 @@ module siteModule './ResourceModules-main/modules/web/site/main.bicep' = {
     location: location
     serverFarmResourceId: resourceId('Microsoft.Web/serverfarms', appServicePlanName)
     siteConfig: {
-      linuxFxVersion: 'DOCKER|${containerRegistryName}.azurecr.io/${containerRegistryImageName}:${containerRegistryImageVersion}',
+      linuxFxVersion: 'DOCKER|${registryName}.azurecr.io/${registryImageName}:${registryImageVersion}'
       appCommandLine: ''
     }
     appSettingsKeyValuePairs: {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
-      DOCKER_REGISTRY_SERVER_URL: 'https://${containerRegistryName}.azurecr.io'
+      DOCKER_REGISTRY_SERVER_URL: 'https://${registryName}.azurecr.io'
       DOCKER_REGISTRY_SERVER_USERNAME: registryUsername
       DOCKER_REGISTRY_SERVER_PASSWORD: registryPassword
     }

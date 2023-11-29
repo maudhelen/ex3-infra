@@ -1,28 +1,26 @@
-name: infra
+name: webapp
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+on: [push, workflow_dispatch]
 
 env:
-  RESOURCE_GROUP_DEV: aguadamillas_students_1
-  SUBSCRIPTION_ID_DEV: e0b9cada-61bc-4b5a-bd7a-52c606726b3b
+  RESOURCE_GROUP: aguadamillas_students_1
+  SUBSCRIPTION_ID: e0b9cada-61bc-4b5a-bd7a-52c606726b3b
   USER_ALIAS: maudhelen
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
       # Checkout code
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@main
 
       # Lint Bicep code 
-      - name: Run Bicep linter
-        run: az bicep build --file ./main.bicep
-    
+    - name: Run Bicep linter
+      run: az bicep build --file ./main.bicep
+
   deploy:
+#   if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     needs: build
     environment:
@@ -32,22 +30,21 @@ jobs:
       ENV: dev
 
     steps:
+
       # Checkout code
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@main
     
       # Log into Azure
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # Deploy Bicep file with parameters from parameters.json
-      - name: Deploy
-        run: |
-          az deployment sub create \
-            --template-file ./main.bicep \
-            --parameters @"./parameters.json" \
-            --name ${{ env.USER_ALIAS }} \
-            --subscription ${{ env.SUBSCRIPTION_ID_DEV }} \
-            --resource-group ${{ env.RESOURCE_GROUP_DEV }}
-        env:
-          AZURE_CONFIG_DIR: ${{ github.workspace }}
+      # Deploy Bicep file
+    - name: deploy
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ env.SUBSCRIPTION_ID }}
+        resourceGroupName: ${{ env.RESOURCE_GROUP }}
+        template: ./main.bicep
+        parameters: ./parameters.json 
+        deploymentName: ${{ env.USER_ALIAS }}

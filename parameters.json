@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "registryName": {
-            "value": "maudhelencr"
+            "value": "maudhelen-cr"
         },
         "location": {
             "value": "Poland Central"
@@ -12,10 +12,16 @@
             "value": true
         },
         "appServicePlanName": {
-            "value": "maudhelenwebapp"
+            "value": "maudhelen-sf"
         },
         "siteName": {
-            "value": "maudhelensite"
+            "value": "maudhelen-site"
+        },
+        "registryImageName":{
+            "value": "flask-demo"
+        },
+        "registryImageVersion":{
+            "value": "latest"
         }
     }
 }
