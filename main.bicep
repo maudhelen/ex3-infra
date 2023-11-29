@@ -8,7 +8,6 @@ param siteName string = 'webapp'
 param registryUsername string = 'maudhelen'
 param registryPassword string = 'maud1234'
 
-
 module registry './modules/container-registry/registry/main.bicep' = {
   name: 'containerregistry'
   params: {
