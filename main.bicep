@@ -38,6 +38,7 @@ param registryImageVersion string
 
 param siteName string = 'webapp'
 param DOCKER_REGISTRY_SERVER_USERNAME string
+@secure()
 param DOCKER_REGISTRY_SERVER_PASSWORD string 
 
 module site './ResourceModules-main/modules/web/site/main.bicep' = {
