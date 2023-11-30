@@ -26,6 +26,6 @@ jobs:
           --resource-group aguadamillas_students_1 \
           --template-file ./main.bicep \
           --parameters @main.parameters.json \
-          --parameters dockerRegistryServerUrl=${{ secrets.DOCKER_REGISTRY_SERVER_URL }} \
+          --parameters dockerRegistryServerUrl=${{ env.DOCKER_REGISTRY_SERVER_URL }} \
           --parameters dockerRegistryServerUsername=${{ vars.DOCKER_REGISTRY_SERVER_USERNAME }} \
           --parameters dockerRegistryServerPassword=${{ secrets.DOCKER_REGISTRY_SERVER_PASSWORD }}
