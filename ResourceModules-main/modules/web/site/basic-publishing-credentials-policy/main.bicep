@@ -38,7 +38,7 @@ resource webApp 'Microsoft.Web/sites@2022-09-01' existing = {
 }
 
 resource basicPublishingCredentialsPolicy 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2022-09-01' = {
-  name: 'scm' // or 'scm'
+  name: name
   location: location
   parent: webApp
   properties: {
