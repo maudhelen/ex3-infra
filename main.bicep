@@ -1,11 +1,11 @@
-param location string = 'East US'
+param location string
 
 // Registry Module
-param registryName string = 'myRegistry'
+param registryName string
 param registryAcrAdminUserEnabled bool = true
 
 module registry './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
-  name: 'registryModule'
+  name: registryName
   params: {
     name: registryName
     acrAdminUserEnabled: registryAcrAdminUserEnabled
@@ -17,7 +17,7 @@ module registry './ResourceModules-main/modules/container-registry/registry/main
 param appServicePlanName string = 'serverfarm'
 
 module serverfarm './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
-  name: 'serverfarmModule'
+  name: appServicePlanName
   params: {
     name: appServicePlanName
     location: location
@@ -37,13 +37,13 @@ module serverfarm './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
 param registryImageName string
 param registryImageVersion string
 
-param siteName string = 'webapp'
+param siteName string
 param DOCKER_REGISTRY_SERVER_USERNAME string
 @secure()
 param DOCKER_REGISTRY_SERVER_PASSWORD string 
 
 module site './ResourceModules-main/modules/web/site/main.bicep' = {
-  name: 'siteModule'
+  name: siteName
   params: {
     kind: 'app'
     name: siteName
