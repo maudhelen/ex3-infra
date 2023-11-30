@@ -1,7 +1,7 @@
 name: Deploy Bicep Template
 
 env:
-  DOCKER_REGISTRY_SERVER_URL = 'maudhelencontaineregistry.azurecr.io'
+  DOCKER_REGISTRY_SERVER_URL = maudhelencontaineregistry.azurecr.io
 on:
   push:
     branches:
