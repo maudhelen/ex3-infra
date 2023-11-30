@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "registryName": {
-            "value": "maudscontaineregistry2"
+            "value": "maudhelencontaineregistry"
         },
         "location": {
             "value": "Sweden Central"
@@ -12,10 +12,10 @@
             "value": true
         },
         "appServicePlanName": {
-            "value": "maudhelen-webapp-plan2"
+            "value": "maudhelen-appservice-plan"
         },
         "siteName": {
-            "value": "maudhelen-appservice2"
+            "value": "maudhelen-appservice"
         },
         "registryImageName": {
             "value": "flask-demo"
