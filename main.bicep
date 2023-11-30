@@ -37,8 +37,8 @@ param registryImageName string
 param registryImageVersion string
 
 param siteName string = 'webapp'
-param registryUsername string = 'maudhelen'
-param registryPassword string = 'maud1234'
+param registryUsername string
+param registryPassword string 
 
 module site './ResourceModules-main/modules/web/site/main.bicep' = {
   name: 'siteModule'
