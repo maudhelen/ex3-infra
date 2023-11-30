@@ -12,7 +12,7 @@
         "value": "mhovlandwebapp"
       },
       "containerRegistryImageName": {
-        "value": "mhovlandcr.azurecr.io/mdrummondwebapp"
+        "value": "mhovlandcr.azurecr.io/mhovlandwebapp"
       },
       "containerRegistryImageVersion": {
         "value": "latest"
