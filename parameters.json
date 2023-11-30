@@ -6,7 +6,7 @@
         "value": "maudhelencontaineregistry"
       },
       "appServicePlanName": {
-        "value": "mhovland-appservice-plan"
+        "value": "maudhelen-appservice-plan"
       },
       "webAppName": {
         "value": "maudhelen-appservice"
