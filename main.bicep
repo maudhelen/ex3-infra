@@ -37,8 +37,8 @@ param registryImageName string
 param registryImageVersion string
 
 param siteName string = 'webapp'
-param registryUsername string
-param registryPassword string 
+param DOCKER_REGISTRY_SERVER_USERNAME string
+param DOCKER_REGISTRY_SERVER_PASSWORD string 
 
 module site './ResourceModules-main/modules/web/site/main.bicep' = {
   name: 'siteModule'
@@ -54,8 +54,8 @@ module site './ResourceModules-main/modules/web/site/main.bicep' = {
     appSettingsKeyValuePairs: {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
       DOCKER_REGISTRY_SERVER_URL: 'https://${registryName}.azurecr.io'
-      DOCKER_REGISTRY_SERVER_USERNAME: registryUsername
-      DOCKER_REGISTRY_SERVER_PASSWORD: registryPassword
+      DOCKER_REGISTRY_SERVER_USERNAME: DOCKER_REGISTRY_SERVER_USERNAME
+      DOCKER_REGISTRY_SERVER_PASSWORD: DOCKER_REGISTRY_SERVER_PASSWORD
     }
   }
 }
