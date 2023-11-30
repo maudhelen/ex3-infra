@@ -2,26 +2,23 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "registryName": {
-            "value": "maudhelencontaineregistry"
-        },
-        "location": {
-            "value": "Sweden Central"
-        },
-        "registryAcrAdminUserEnabled": {
-            "value": true
-        },
-        "appServicePlanName": {
-            "value": "maudhelen-appservice-plan"
-        },
-        "siteName": {
-            "value": "maudhelen-appservice"
-        },
-        "registryImageName": {
-            "value": "flask-demo"
-        },
-        "registryImageVersion": {
-            "value": "latest"
-        }
+      "containerRegistryName": {
+        "value": "mhovlandcr"
+      },
+      "appServicePlanName": {
+        "value": "mhovlandasp"
+      },
+      "webAppName": {
+        "value": "mhovlandwebapp"
+      },
+      "containerRegistryImageName": {
+        "value": "mhovlandcr.azurecr.io/mdrummondwebapp"
+      },
+      "containerRegistryImageVersion": {
+        "value": "latest"
+      },
+      "location": {
+        "value": "Poland Central"
+      }
     }
-}
+  }

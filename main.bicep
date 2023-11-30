@@ -1,22 +1,30 @@
+// Main.bicep
+
+// Parameters
+param containerRegistryName string
+param appServicePlanName string
+param webAppName string
+param containerRegistryImageName string
+param containerRegistryImageVersion string
 param location string
 
-// Registry Module
-param registryName string
-param registryAcrAdminUserEnabled bool = true
+@secure()
+param dockerRegistryServerPassword string
+param dockerRegistryServerUrl string
+param dockerRegistryServerUsername string
 
-module registry './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
-  name: registryName
+// Azure Container Registry module
+module acr './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
+  name: containerRegistryName
   params: {
-    name: registryName
-    acrAdminUserEnabled: registryAcrAdminUserEnabled
+    name: containerRegistryName
     location: location
+    acrAdminUserEnabled: true
   }
 }
 
-// Serverfarm Module
-param appServicePlanName string = 'serverfarm'
-
-module serverfarm './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
+// Azure Service Plan for Linux module
+module servicePlan './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
   name: appServicePlanName
   params: {
     name: appServicePlanName
@@ -32,32 +40,23 @@ module serverfarm './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
   }
 }
 
-// Site Module
-
-param registryImageName string
-param registryImageVersion string
-
-param siteName string
-param DOCKER_REGISTRY_SERVER_USERNAME string
-@secure()
-param DOCKER_REGISTRY_SERVER_PASSWORD string 
-
-module site './ResourceModules-main/modules/web/site/main.bicep' = {
-  name: siteName
+// Azure Web App for Linux containers module
+module webApp './ResourceModules-main/modules/web/site/main.bicep' = {
+  name: webAppName
   params: {
-    kind: 'app'
-    name: siteName
+    name: webAppName
     location: location
-    serverFarmResourceId: resourceId('Microsoft.Web/serverfarms', appServicePlanName)
+    kind: 'app'
+    serverFarmResourceId: servicePlan.outputs.resourceId
     siteConfig: {
-      linuxFxVersion: 'DOCKER|${registryName}.azurecr.io/${registryImageName}:${registryImageVersion}'
+      linuxFxVersion: 'DOCKER|${containerRegistryName}.azurecr.io/${containerRegistryImageName}:${containerRegistryImageVersion}'
       appCommandLine: ''
     }
-    appSettingsKeyValuePairs : {
+    appSettingsKeyValuePairs: {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
-      DOCKER_REGISTRY_SERVER_URL: 'https://${registryName}.azurecr.io'
-      DOCKER_REGISTRY_SERVER_USERNAME: DOCKER_REGISTRY_SERVER_USERNAME
-      DOCKER_REGISTRY_SERVER_PASSWORD: DOCKER_REGISTRY_SERVER_PASSWORD
+      DOCKER_REGISTRY_SERVER_URL: dockerRegistryServerUrl
+      DOCKER_REGISTRY_SERVER_USERNAME: dockerRegistryServerUsername
+      DOCKER_REGISTRY_SERVER_PASSWORD: dockerRegistryServerPassword
     }
   }
 }
