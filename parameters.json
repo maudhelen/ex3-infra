@@ -3,19 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "registryName": {
-            "value": "maudscontaineregistry"
+            "value": "maudscontaineregistry2"
         },
         "location": {
-            "value": "Norway East"
+            "value": "Norway West"
         },
         "registryAcrAdminUserEnabled": {
             "value": true
         },
         "appServicePlanName": {
-            "value": "maudhelen-webapp-plan"
+            "value": "maudhelen-webapp-plan2"
         },
         "siteName": {
-            "value": "maudhelen-webapp"
+            "value": "maudhelen-webapp2"
         },
         "registryImageName":{
             "value": "flask-demo"
