@@ -15,7 +15,7 @@
             "value": "maudhelen-webapp-plan2"
         },
         "siteName": {
-            "value": "maudhelen-webapp2"
+            "value": "maudhelen-appservice2"
         },
         "registryImageName": {
             "value": "flask-demo"

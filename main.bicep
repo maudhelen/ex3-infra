@@ -42,7 +42,7 @@ param DOCKER_REGISTRY_SERVER_USERNAME string
 @secure()
 param DOCKER_REGISTRY_SERVER_PASSWORD string 
 
-module siteModule './ResourceModules-main/modules/web/site/main.bicep' = {
+module site './ResourceModules-main/modules/web/site/main.bicep' = {
   name: 'siteModule'
   params: {
     kind: 'app'
