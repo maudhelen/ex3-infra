@@ -4,7 +4,7 @@ param location string = 'East US'
 param registryName string = 'myRegistry'
 param registryAcrAdminUserEnabled bool = true
 
-module registry './modules/container-registry/registry/main.bicep' = {
+module registry './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
   name: 'registryModule'
   params: {
     name: registryName
@@ -16,7 +16,7 @@ module registry './modules/container-registry/registry/main.bicep' = {
 // Serverfarm Module
 param appServicePlanName string = 'serverfarm'
 
-module serverfarm './modules/web/serverfarm/main.bicep' = {
+module serverfarm './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
   name: 'serverfarmModule'
   params: {
     name: appServicePlanName
@@ -42,7 +42,7 @@ param DOCKER_REGISTRY_SERVER_USERNAME string
 @secure()
 param DOCKER_REGISTRY_SERVER_PASSWORD string 
 
-module site './modules/web/site/main.bicep' = {
+module siteModule './ResourceModules-main/modules/web/site/main.bicep' = {
   name: 'siteModule'
   params: {
     kind: 'app'
@@ -53,7 +53,7 @@ module site './modules/web/site/main.bicep' = {
       linuxFxVersion: 'DOCKER|${registryName}.azurecr.io/${registryImageName}:${registryImageVersion}'
       appCommandLine: ''
     }
-    appSettingsKeyValuePairs: {
+    appSettingsKeyValuePairs : {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
       DOCKER_REGISTRY_SERVER_URL: 'https://${registryName}.azurecr.io'
       DOCKER_REGISTRY_SERVER_USERNAME: DOCKER_REGISTRY_SERVER_USERNAME
