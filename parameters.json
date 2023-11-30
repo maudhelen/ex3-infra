@@ -13,15 +13,6 @@
         },
         "appServicePlanName": {
             "value": "maudhelen-webapp-plan2"
-        },
-        "siteName": {
-            "value": "maudhelen-webapp2"
-        },
-        "registryImageName":{
-            "value": "flask-demo"
-        },
-        "registryImageVersion":{
-            "value": "latest"
         }
     }
 }
