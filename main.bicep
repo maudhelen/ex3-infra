@@ -33,6 +33,7 @@ module serverfarm './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
 }
 
 // Site Module
+
 param registryImageName string
 param registryImageVersion string
 

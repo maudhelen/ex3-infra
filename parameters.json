@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "registryName": {
-            "value": "maudsContainerRegistry"
+            "value": "maudscontaineregistry"
         },
         "location": {
             "value": "Norway East"
