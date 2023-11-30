@@ -4,7 +4,7 @@ param location string = 'East US'
 param registryName string = 'myRegistry'
 param registryAcrAdminUserEnabled bool = true
 
-module registry './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
+module registry './modules/container-registry/registry/main.bicep' = {
   name: 'registryModule'
   params: {
     name: registryName
@@ -16,7 +16,7 @@ module registry './ResourceModules-main/modules/container-registry/registry/main
 // Serverfarm Module
 param appServicePlanName string = 'serverfarm'
 
-module serverfarm './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
+module serverfarm './modules/web/serverfarm/main.bicep' = {
   name: 'serverfarmModule'
   params: {
     name: appServicePlanName
@@ -42,7 +42,7 @@ param DOCKER_REGISTRY_SERVER_USERNAME string
 @secure()
 param DOCKER_REGISTRY_SERVER_PASSWORD string 
 
-module site './ResourceModules-main/modules/web/site/main.bicep' = {
+module site './modules/web/site/main.bicep' = {
   name: 'siteModule'
   params: {
     kind: 'app'
