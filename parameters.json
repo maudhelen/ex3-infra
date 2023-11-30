@@ -3,22 +3,22 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "containerRegistryName": {
-        "value": "mhovlandcr"
+        "value": "maudhelencontaineregistry"
       },
       "appServicePlanName": {
-        "value": "mhovlandasp"
+        "value": "mhovland-appservice-plan"
       },
       "webAppName": {
-        "value": "mhovlandwebapp"
+        "value": "maudhelen-appservice"
       },
       "containerRegistryImageName": {
-        "value": "mhovlandcr.azurecr.io/mhovlandwebapp"
+        "value": "maudhelencontaineregistry.azurecr.io/maudhelen-appservice"
       },
       "containerRegistryImageVersion": {
         "value": "latest"
       },
       "location": {
-        "value": "Poland Central"
+        "value": "Sweden Central"
       }
     }
   }

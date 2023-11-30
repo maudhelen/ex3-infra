@@ -8,10 +8,10 @@ param containerRegistryImageName string
 param containerRegistryImageVersion string
 param location string
 
+param DOCKER_REGISTRY_SERVER_USERNAME string
+param DOCKER_REGISTRY_SERVER_URL string
 @secure()
-param dockerRegistryServerPassword string
-param dockerRegistryServerUrl string
-param dockerRegistryServerUsername string
+param DOCKER_REGISTRY_SERVER_PASSWORD string
 
 // Azure Container Registry module
 module acr './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
@@ -54,9 +54,9 @@ module webApp './ResourceModules-main/modules/web/site/main.bicep' = {
     }
     appSettingsKeyValuePairs: {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
-      DOCKER_REGISTRY_SERVER_URL: dockerRegistryServerUrl
-      DOCKER_REGISTRY_SERVER_USERNAME: dockerRegistryServerUsername
-      DOCKER_REGISTRY_SERVER_PASSWORD: dockerRegistryServerPassword
+      DOCKER_REGISTRY_SERVER_URL: DOCKER_REGISTRY_SERVER_URL
+      DOCKER_REGISTRY_SERVER_USERNAME: DOCKER_REGISTRY_SERVER_USERNAME
+      DOCKER_REGISTRY_SERVER_PASSWORD: DOCKER_REGISTRY_SERVER_PASSWORD
     }
   }
 }
