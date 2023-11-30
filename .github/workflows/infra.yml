@@ -41,10 +41,6 @@ jobs:
 
       # Deploy Bicep file
     - name: deploy
-      run: |
-          az bicep build --file ./main.bicep 2>&1 | tee output.log
-          exit $(grep -c 'Warning BCP' output.log)
-        continue-on-error: true
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ env.SUBSCRIPTION_ID }}
@@ -52,4 +48,3 @@ jobs:
         template: ./main.bicep
         parameters: ./parameters.json DOCKER_REGISTRY_SERVER_PASSWORD=${{secrets.DOCKER_REGISTRY_SERVER_PASSWORD }} DOCKER_REGISTRY_SERVER_USERNAME=${{vars.DOCKER_REGISTRY_SERVER_USERNAME }}
         deploymentName: ${{ env.USER_ALIAS }}
-        continueOnError: true  # Add this line to continue the workflow even if there are errors in the deployment
