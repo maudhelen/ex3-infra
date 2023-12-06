@@ -10,9 +10,6 @@ env:
   RESOURCE_GROUP_DEV: aguadamillas_students_1
   SUBSCRIPTION_ID_DEV: e0b9cada-61bc-4b5a-bd7a-52c606726b3b
   USER_ALIAS: maudhelen
-  DOCKER_REGISTRY_SERVER_URL: maudhelencontaineregistry.azurecr.io
-  DOCKER_REGISTRY_SERVER_USERNAME: maudhelencontaineregistry
-  DOCKER_REGISTRY_SERVER_PASSWORD: wCrjuLGNqE3Hi0UlUQIVVT5CgzZb6ORNyBCC4w9jYT+ACRDvM5MI
 
 
 
