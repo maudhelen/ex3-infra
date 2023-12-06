@@ -60,3 +60,4 @@ module webApp './ResourceModules-main/modules/web/site/main.bicep' = {
     }
   }
 }
+
