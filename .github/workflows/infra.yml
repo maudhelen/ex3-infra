@@ -41,16 +41,16 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # Deploy Key Vault
-      # - name: deploy-key-vault
-      #   uses: azure/arm-deploy@v1.0.9
-      #   with:
-      #     subscriptionId: ${{ env.SUBSCRIPTION_ID_DEV }}
-      #     resourceGroupName: ${{ env.RESOURCE_GROUP_DEV }}
-      #     template: ./infra/key-vault.bicep
-      #     parameters: ./infra/parameters/key-vault.json
-      #     deploymentName: "${{ env.USER_ALIAS }}-kv"
-      #     failOnStdErr: false
+      #Deploy Key Vault
+      - name: deploy-key-vault
+        uses: azure/arm-deploy@v1.0.9
+        with:
+          subscriptionId: ${{ env.SUBSCRIPTION_ID_DEV }}
+          resourceGroupName: ${{ env.RESOURCE_GROUP_DEV }}
+          template: ./key-vault.bicep
+          parameters: ./parameters/key-vault.json
+          deploymentName: "${{ env.USER_ALIAS }}-kv"
+          failOnStdErr: false
 
       # Deploy Bicep file
       - name: deploy-main

@@ -581,3 +581,4 @@ type customerManagedKeyType = {
   @description('Optional. User assigned identity to use when fetching the customer managed key. Required if no system assigned identity is available for use.')
   userAssignedIdentityResourceId: string?
 }?
+
