@@ -1,7 +1,7 @@
 param location string
 param keyVaultName string
 
-module vault 'ResourceModules-main/modules/key-vault/vault/main.bicep' = {
+module keyvault 'ResourceModules-main/modules/key-vault/vault/main.bicep' = {
   name: keyVaultName
   params: {
     name: keyVaultName
