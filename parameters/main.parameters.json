@@ -17,6 +17,9 @@
       "containerRegistryImageVersion": {
         "value": "latest"
       },
+      "keyVaultName": {
+        "value":"maudhelen-keyvault"
+      },
       "location": {
         "value": "Sweden Central"
       }
