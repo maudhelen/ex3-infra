@@ -22,6 +22,12 @@
       },
       "location": {
         "value": "Sweden Central"
+      },
+      "dockerRegistryServerUrl":{
+        "value": "maudhelencontaineregistry.azurecr.io"
+      },
+      "dockerRegistryServerUserName":{
+        "value": "maudhelen"
       }
     }
   }
