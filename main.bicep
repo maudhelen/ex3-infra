@@ -7,11 +7,17 @@ param webAppName string
 param containerRegistryImageName string
 param containerRegistryImageVersion string
 param location string
+param keyVaultName string
 
-param DOCKER_REGISTRY_SERVER_USERNAME string
 param DOCKER_REGISTRY_SERVER_URL string
-@secure()
-param DOCKER_REGISTRY_SERVER_PASSWORD string
+param kevVaultSecretNameACRUsername string
+param kevVaultSecretNameACRPassword1 string 
+
+//key vault reference
+resource keyvault 'Microsoft.KeyVault/vaults@2023-02-01' existing = {
+  name: keyVaultName
+ }
+
 
 // Azure Container Registry module
 module acr './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
@@ -54,10 +60,11 @@ module webApp './ResourceModules-main/modules/web/site/main.bicep' = {
     }
     appSettingsKeyValuePairs: {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
-      DOCKER_REGISTRY_SERVER_URL: DOCKER_REGISTRY_SERVER_URL
-      DOCKER_REGISTRY_SERVER_USERNAME: DOCKER_REGISTRY_SERVER_USERNAME
-      DOCKER_REGISTRY_SERVER_PASSWORD: DOCKER_REGISTRY_SERVER_PASSWORD
     }
+    dockerRegistryServerUrl: DOCKER_REGISTRY_SERVER_URL
+    dockerRegistryServerUserName: keyvault.getSecret(kevVaultSecretNameACRUsername)
+    dockerRegistryServerPassword: keyvault.getSecret(kevVaultSecretNameACRPassword1)
   }
 }
+
 
