@@ -153,11 +153,11 @@ param hybridConnectionRelays array = []
 param publicNetworkAccess string = ''
 
 @secure()
-param dockerRegistryServerUrl
+param dockerRegistryServerUrl string
 @secure()
-param dockerRegistryServerUserName
+param dockerRegistryServerUserName string
 @secure()
-param dockerRegistryServerPassword
+param dockerRegistryServerPassword string
 
 var dockerAppSettings = {
   DOCKER_REGISTRY_SERVER_URL: dockerRegistryServerUrl
