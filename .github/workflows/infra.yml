@@ -10,8 +10,8 @@ env:
   RESOURCE_GROUP: aguadamillas_students_1
   SUBSCRIPTION_ID: e0b9cada-61bc-4b5a-bd7a-52c606726b3b
   USER_ALIAS: maudhelen
-  KEY_VAULT_SECRET_NAME_ACR_USERNAME: poop
-  KEY_VAULT_SECRET_NAME_ACR_PASSWORD: poop
+  KEY_VAULT_SECRET_NAME_ACR_USERNAME: "kevVaultSecretNameACRUsername"
+  KEY_VAULT_SECRET_NAME_ACR_PASSWORD: "kevVaultSecretNameACRPassword1"
   KEY_VAULT_NAME: maudhelen-keyvault
 
 
