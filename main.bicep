@@ -61,7 +61,7 @@ module webApp './ResourceModules-main/modules/web/site/main.bicep' = {
     appSettingsKeyValuePairs: {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
     }
-    dockerRegistryServerUrl: DOCKER_REGISTRY_SERVER_URL
+    dockerRegistryServerUrl: 'https://${containerRegistryName}.azurecr.io'
     dockerRegistryServerUserName: keyvault.getSecret(keyVaultSecretNameACRUsername)
     dockerRegistryServerPassword: keyvault.getSecret(keyVaultSecretNameACRPassword1)
   }
