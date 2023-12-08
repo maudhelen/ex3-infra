@@ -21,18 +21,9 @@ resource keyvault 'Microsoft.KeyVault/vaults@2023-02-01' existing = {
 
 
 // Azure Container Registry module
-module acr './ResourceModules-main/modules/container-registry/registry/main.bicep' = {
+resource acr 'Microsoft.ContainerRegistry/registries@2023-07-01' existing = {
   name: containerRegistryName
-  params: {
-    name: containerRegistryName
-    location: location
-    acrAdminUserEnabled: true
-    adminCredentialsKeyVaultResourceId: resourceId('Microsoft.KeyVault/vaults', keyVaultName)
-    adminCredentialsKeyVaultSecretUserName: keyVaultSecretNameACRUsername
-    adminCredentialsKeyVaultSecretUserPassword1: keyVaultSecretNameACRPassword1
-
-  }
-}
+ }
 
 // Azure Service Plan for Linux module
 module servicePlan './ResourceModules-main/modules/web/serverfarm/main.bicep' = {
@@ -54,6 +45,11 @@ module servicePlan './ResourceModules-main/modules/web/serverfarm/main.bicep' = 
 // Azure Web App for Linux containers module
 module webApp './ResourceModules-main/modules/web/site/main.bicep' = {
   name: webAppName
+  dependsOn: [
+    servicePlan
+    acr
+    keyvault
+  ]
   params: {
     name: webAppName
     location: location
@@ -67,8 +63,8 @@ module webApp './ResourceModules-main/modules/web/site/main.bicep' = {
       WEBSITES_ENABLE_APP_SERVICE_STORAGE: false
     }
     dockerRegistryServerUrl: DOCKER_REGISTRY_SERVER_URL
-    dockerRegistryServerUserName: keyvault.getSecret(kevVaultSecretNameACRUsername)
-    dockerRegistryServerPassword: keyvault.getSecret(kevVaultSecretNameACRPassword1)
+    dockerRegistryServerUserName: keyvault.getSecret(keyVaultSecretNameACRUsername)
+    dockerRegistryServerPassword: keyvault.getSecret(keyVaultSecretNameACRPassword1)
   }
 }
 
