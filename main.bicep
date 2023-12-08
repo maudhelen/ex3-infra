@@ -9,7 +9,6 @@ param containerRegistryImageVersion string
 param location string
 param keyVaultName string
 
-param DOCKER_REGISTRY_SERVER_URL string
 param keyVaultSecretNameACRUsername string = 'acr-username'
 param keyVaultSecretNameACRPassword1 string = 'acr-password1'
 
