@@ -1,8 +1,8 @@
 param location string
 param keyVaultName string
 param containerRegistryName string
-param keyVaultSecretNameACRUsername string
-param keyVaultSecretNameACRPassword1 string
+param keyVaultSecretNameACRUsername string ='acr-username'
+param keyVaultSecretNameACRPassword1 string ='acr-password1'
 
 module keyvault 'ResourceModules-main/modules/key-vault/vault/main.bicep' = {
   name: keyVaultName
