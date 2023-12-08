@@ -10,8 +10,8 @@ param location string
 param keyVaultName string
 
 param DOCKER_REGISTRY_SERVER_URL string
-param keyVaultSecretNameACRUsername string
-param keyVaultSecretNameACRPassword1 string 
+param keyVaultSecretNameACRUsername string = 'acr-username'
+param keyVaultSecretNameACRPassword1 string = 'acr-password1'
 
 //key vault reference
 resource keyvault 'Microsoft.KeyVault/vaults@2023-02-01' existing = {
