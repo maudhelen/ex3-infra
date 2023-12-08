@@ -10,8 +10,9 @@ param location string
 param keyVaultName string
 
 param DOCKER_REGISTRY_SERVER_URL string
-param kevVaultSecretNameACRUsername string
-param kevVaultSecretNameACRPassword1 string 
+param keyVaultSecretNameACRUsername string
+param keyVaultSecretNameACRPassword1 string 
+param keyVaultSecretNameACRPassword2 string 
 
 //key vault reference
 resource keyvault 'Microsoft.KeyVault/vaults@2023-02-01' existing = {
@@ -26,6 +27,10 @@ module acr './ResourceModules-main/modules/container-registry/registry/main.bice
     name: containerRegistryName
     location: location
     acrAdminUserEnabled: true
+    adminCredentialsKeyVaultResourceId: resourceId('Microsoft.KeyVault/vaults', keyVaultName)
+    adminCredentialsKeyVaultSecretUserName: keyVaultSecretNameACRUsername
+    adminCredentialsKeyVaultSecretUserPassword1: keyVaultSecretNameACRPassword1
+
   }
 }
 
